@@ -6,11 +6,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
-public class LinkStack extends Stack<Link> {
+public class LinkStack extends LinkedList<Link> {
 
 	private static final long serialVersionUID = 9051786979718253017L;
 
@@ -45,9 +43,9 @@ public class LinkStack extends Stack<Link> {
 
 					boolean atLeastOneAdded = false;
 					for (Element link : links) {
-						atLeastOneAdded = this.add(new Link(link.attr("abs:href"), currentLink, false));
+						atLeastOneAdded = add(new Link(link.attr("abs:href"), currentLink));
 					}
-					if (atLeastOneAdded  == false) {
+					if (!atLeastOneAdded) {
 						currentLink.printPath();
 					}
 
